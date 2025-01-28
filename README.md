@@ -6,6 +6,4 @@
   <img src="born2beroote.png" />
 </p>
 
-<h2 align="center">
-  Key Points
-</h2>
+# Key Points
