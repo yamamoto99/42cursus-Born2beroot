@@ -6,4 +6,8 @@
   <img src="born2beroote.png" />
 </p>
 
+# Setup
+
+### [VMセットアップ方法](SETUP.md)
+
 # Key Points
