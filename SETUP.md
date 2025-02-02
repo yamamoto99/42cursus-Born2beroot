@@ -315,3 +315,19 @@ password        requisite                       pam_pwquality.so retry=3 minlen=
 ```shell
 passwd <username>
 ```
+
+## モニタリングスクリプト
+
+課題要件より、`cron`を利用して、10 分ごとにスクリプトを実行し、マシン状態を標準出力する必要があります。  
+下記コマンドを用いて、`cron`の設定を行います。
+
+```shell
+crontab -e
+```
+
+下記設定を記載することで、10 分ごとに`monitoring.sh`が実行されます。
+また、システム内の全ユーザーの端末にメッセージを表示するために、`wall`を追記します。
+
+```shell
+*/10 * * * * bash /etc/cron.d/monitoring.sh | wall
+```
