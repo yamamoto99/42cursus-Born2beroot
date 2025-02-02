@@ -199,3 +199,62 @@ To                         Action      From
 4242                       ALLOW       Anywhere
 4242 (v6)                  ALLOW       Anywhere (v6)
 ```
+
+## SUDO
+
+次に sudo の設定を行います。
+下記コマンドを実行し、sudo をインストールします。
+
+```shell
+apt install sudo
+```
+
+次に sudo の設定を行います。下記コマンドを入力し、sudo の設定ファイルを開きます。
+
+```shell
+visudo
+```
+
+続けて下記の設定を行います。
+
+```shell
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# -----以下追加部分-----
+# sudo利用時にTTYを必須に
+Defaults	requiretty
+# sudoで間違ったパスワードを入力するとカスタムメッセージを表示
+Defaults	badpass_message="WRONG PASSWORD"
+# 入力ログファイルを設定
+Defaults	logfile="/var/log/sudo/sudo.log"
+# 入力を記録
+Defaults	log_input
+# 出力を記録
+Defaults	log_output
+# 追加の出力ログと入力ログを保存するディレクトリを設定
+Defaults	iolog_dir=/var/log/sudo
+# sudoを使用した接続試行を制限
+Defaults	passwd_tries=3
+```
+
+## グループ
+
+課題要件ではユーザーを`user42`と`sudo`のグループに所属させる必要があります。  
+まずは下記コマンドで`user42`グループを作成します。
+
+```shell
+groupadd user42
+```
+
+続いて、下記コマンドで、ユーザーを`sudo`及び`user42`グループに追加します。
+
+```shell
+usermod -aG user42,sudo <username>
+```
+
+下記コマンドでユーザーが正常にグループに所属しているか確認します。
+
+```shell
+groups <username>
+```
