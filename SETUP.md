@@ -127,11 +127,19 @@ systemctl status ssh
 そのため、SSH 設定ファイル (`/etc/ssh/sshd_config`) を以下のように編集してください。  
 コメント状態の場合、デフォルト設定が適用されるため、必ずコメントは解除する必要があります。
 
+変更前
+
 ```shell
 #Port22
-Port 4242
 
 #PermitRootLogin prohibit-password
+```
+
+変更後
+
+```
+Port 4242
+
 PermitRootLogin no
 ```
 
@@ -301,10 +309,16 @@ apt install libpam-pwquality
 
 次に`/etc/pam.d/common-password`にアクセスし、パスワードルールを変更します。
 
+変更前
+
 ```shell
 # here are the per-package modules (the "Primary" block)
 password        requisite                       pam_pwquality.so retry=3
+```
 
+変更後
+
+```shell
 # here are the per-package modules (the "Primary" block)
 password        requisite                       pam_pwquality.so retry=3 minlen=10 difok=7 maxrepeat=3 dcredit=-1 ucredit=-1 lcredit=-1 reject_username enforce_for_root
 ```
