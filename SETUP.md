@@ -258,3 +258,60 @@ usermod -aG user42,sudo <username>
 ```shell
 groups <username>
 ```
+
+## パスワード
+
+課題要件ではパスワードポリシーについて厳格な規定が存在します。  
+このパートではパスワードポリシーの設定を行います。  
+パスワードポリシー設定ファイル（`/etc/login.defs`）に移動し、`Password aging controls`の項目を下記の通り変更します。
+
+```shell
+# Password aging controls:
+#
+#       PASS_MAX_DAYS   Maximum number of days a password may be used.
+#       PASS_MIN_DAYS   Minimum number of days allowed between password changes.
+#       PASS_WARN_AGE   Number of days warning given before a password expires.
+#
+PASS_MAX_DAYS   30
+PASS_MIN_DAYS   2
+PASS_WARN_AGE   7
+```
+
+> [!WARNING]
+> ここで行ったパスワードポリシーの変更を下記コマンドを用いて、既存のユーザーと root ユーザーに適用する必要があります。
+
+```shell
+chage -M 30 root
+chage -m 2 root
+chage -M 30 <username>
+chage -m 2 <username>
+```
+
+また、ユーザーのパスワードポリシーの確認は下記コマンドを利用します。
+
+```shell
+chage -l <username>
+```
+
+続いて、パスワードポリシーを強化するために、`pwquality`モジュールを下記コマンドでインストールします。
+
+```shell
+apt install libpam-pwquality
+```
+
+次に`/etc/pam.d/common-password`にアクセスし、パスワードルールを変更します。
+
+```shell
+# here are the per-package modules (the "Primary" block)
+password        requisite                       pam_pwquality.so retry=3
+
+# here are the per-package modules (the "Primary" block)
+password        requisite                       pam_pwquality.so retry=3 minlen=10 difok=7 maxrepeat=3 dcredit=-1 ucredit=-1 lcredit=-1 reject_username enforce_for_root
+```
+
+> [!WARNING]
+> 新しいルールを適用後、下記コマンドを用いて、既存ユーザーと root ユーザーのパスワードを更新する必要があります。
+
+```shell
+passwd <username>
+```
