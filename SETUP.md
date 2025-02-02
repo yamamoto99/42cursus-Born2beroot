@@ -343,5 +343,7 @@ crontab -e
 また、システム内の全ユーザーの端末にメッセージを表示するために、`wall`を追記します。
 
 ```shell
-*/10 * * * * bash /etc/cron.d/monitoring.sh | wall
+*/10 * * * * bash /etc/cron.d/monitoring.sh
 ```
+
+`monitoring.sh`のサンプルは[こちら](monitoring.sh)
