@@ -340,7 +340,6 @@ crontab -e
 ```
 
 下記設定を記載することで、10 分ごとに`monitoring.sh`が実行されます。
-また、システム内の全ユーザーの端末にメッセージを表示するために、`wall`を追記します。
 
 ```shell
 */10 * * * * bash /etc/cron.d/monitoring.sh
