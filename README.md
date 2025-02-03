@@ -335,3 +335,40 @@ Defaults        passwd_tries=3
 - `env_reset`と`secure_path`により、意図しない環境変数の影響を防止し、安全なコマンド実行環境を確保できます。
 - `mail_badpass`や`logfile`、`log_input`、`log_output`により、パスワードの入力ミスやコマンド実行の履歴が記録され、不正アクセスの監視が可能になります。
 - `passwd_tries`は、連続したパスワード誤入力によるブルートフォース攻撃を防ぐ効果があります。
+
+## UFW
+
+### UFW とは
+
+UFW (Uncomplicated Firewall) は、シンプルで使いやすいファイアウォール管理ツールです。  
+不要なポートを閉じ、必要なポートだけを開放することで、外部からの不正アクセスや攻撃のリスクを低減できます。
+
+### UFW のステータス確認
+
+`UFW`が起動していることを確認するには、管理者 (root) 権限で下記コマンドを実行します。
+
+```shell
+sudo ufw status
+```
+
+### 新たなポートを開く
+
+指定した番号のポートを解放するには、管理者（root）権限で以下のコマンドを実行します。
+
+```shell
+sudo ufw allow <port number>
+```
+
+### 定義済みルールの削除
+
+既存のルールを削除する場合、まずルール一覧を番号付きで表示し、削除対象の番号を確認します。
+
+```shell
+sudo ufw status numbered
+```
+
+その後、削除対象の番号を指定してルールを削除します。
+
+```shell
+sudo ufw delete <number>
+```
