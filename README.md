@@ -248,3 +248,90 @@ password        requisite                       pam_pwquality.so retry=3 minlen=
 
 - ユーザビリティの低下  
    複雑で頻繁なパスワード更新が求められると、ユーザーがパスワードを覚えにくくなり、ログイン失敗の原因にも繋がる。
+
+## ホスト
+
+### マシンのホスト名の確認
+
+マシンのホスト名は、以下のコマンドで確認できます。
+
+```shell
+hostname
+```
+
+### ホスト名の変更方法
+
+マシンのホスト名の変更は、管理者 (root) 権限で下記コマンドを実行します。
+
+```shell
+sudo hostnamectl set-hostname <new host name>
+```
+
+## パーティション
+
+### パーティションの確認
+
+システムのパーティショニング状況は、以下のコマンドで確認できます。
+
+```shell
+lsblk
+```
+
+### LVM (Logical Volume Manager) とは
+
+`LVM`は、複数のディスクやパーティションをひとつのボリュームグループにまとめ、単一の論理ボリュームとして扱うことができるディスク管理機能です。  
+【特徴・メリット】
+
+- 複数のディスクやパーティションの記憶領域を統合し、1 つの巨大な論理ボリュームとして利用できる。
+- ボリュームサイズの拡張や縮小、また物理ボリュームの追加が柔軟に行える。
+
+### パーティションとは
+
+パーティションとは、1 つの物理ディスクを複数の論理的な領域に分割する仕組み。  
+これにより、OS からはあたかも複数の独立したディスクが存在するかのように認識され、データの管理やシステムの運用が柔軟になる。
+
+## SUDO
+
+### SUDO 設定
+
+SUDO の設定を行うには、管理者 (root) 権限で下記コマンドを実行します。
+
+```shell
+sudo visudo
+```
+
+以下は、設定ファイルに記述される例です。
+
+```shell
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin>
+Defaults        requiretty
+Defaults        badpass_message="WRONG PASSWORD"
+Defaults        logfile="/var/log/sudo/sudo.log"
+Defaults        log_input
+Defaults        log_output
+Defaults        iolog_dir=/var/log/sudo
+Defaults        passwd_tries=3
+```
+
+【各設定項目の説明】
+| 項目 | 説明 |
+|------------------|---------------------------------------------------------------------------------------|
+| env_reset | `sudo`実行時に環境変数をリセットし、不要な変数が引き継がれないようにします。 |
+| mail_badpass | 不正なパスワード入力時に管理者へメールで通知するオプションです。 |
+| secure_path | `sudo`実行時に使用される安全なパスを指定します。例："/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin" |
+| requiretty | `sudo`コマンド実行時に、TTY（端末）が必要であることを要求します。 |
+| badpass_message | 不正なパスワード入力時にユーザーに表示するメッセージを設定します。 |
+| logfile | `sudo`の操作ログを記録するファイルのパスを指定します。 |
+| log_input | ユーザーの入力内容（キーストロークなど）をログに記録します。 |
+| log_output | コマンドの出力をログに記録します。 |
+| iolog_dir | 入出力ログファイルを保存するディレクトリを指定します。 |
+| passwd_tries | パスワード入力の試行回数の上限を設定し、上限に達した場合は`sudo`の実行を中断します。 |
+
+【解説】  
+これらの設定は、sudo のセキュリティや監査を強化するために重要です。
+
+- `env_reset`と`secure_path`により、意図しない環境変数の影響を防止し、安全なコマンド実行環境を確保できます。
+- `mail_badpass`や`logfile`、`log_input`、`log_output`により、パスワードの入力ミスやコマンド実行の履歴が記録され、不正アクセスの監視が可能になります。
+- `passwd_tries`は、連続したパスワード誤入力によるブルートフォース攻撃を防ぐ効果があります。
