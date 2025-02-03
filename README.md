@@ -436,4 +436,3 @@ crontab -e
 | ユニット（サービス）自動起動有効 | `systemctl enable ${Unit}` | システム起動時にユニットを自動で起動するよう設定します。 |
 | ユニット（サービス）自動起動無効 | `systemctl disable ${Unit}` | システム起動時にユニットが起動しないように設定します。 |
 | ユニット（サービス）自動起動設定確認 | `systemctl is-enabled ${Unit}` | ユニットの自動起動設定が有効かどうか確認します。 |
-| ユニット（サービス）一覧 | `systemctl list-unit-files --type=service` | システム上のサービスユニット一覧を表示します。 |
