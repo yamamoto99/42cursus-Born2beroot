@@ -305,7 +305,7 @@ sudo visudo
 ```shell
 Defaults        env_reset
 Defaults        mail_badpass
-Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin>
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 Defaults        requiretty
 Defaults        badpass_message="WRONG PASSWORD"
 Defaults        logfile="/var/log/sudo/sudo.log"
