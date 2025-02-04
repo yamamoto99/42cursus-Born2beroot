@@ -373,3 +373,9 @@ crontab -e
 ```
 
 `monitoring.sh`のサンプルは[こちら](monitoring.sh)
+
+</br>
+</br>
+<h3 align="center">
+   もし設定で誤っている点がありましたら、ご連絡ください。
+<h3>
