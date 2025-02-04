@@ -94,7 +94,7 @@
 5. ガイドによるパーティショニングを利用するボリュームのサイズを選択します。ここでは`15GB`を入力します。
 6. まず、LVM グループの名前を変更します。`Go Back`を選択し、`Execute a shell`を選択します。
 7. 確認が出るので`Continue`を選択します。
-8. terminal で`vgrename <hostname>-vg LVMGroup`を実行します。
+8. terminal で`vgrename <hostname>-vg LVMGroup`を実行します。  
    ※`<hostname>`は自身が設定した、マシンの hostname を入力してください。
 10. 次にswap領域の名前を変更します。terminalで`lvrename LVMGroup swap_1 swap`を実行します。
 9. terminalから`exit`して、menu から`Partition disks`に戻ります。
