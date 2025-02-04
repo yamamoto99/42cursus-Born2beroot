@@ -64,39 +64,13 @@
 ### ディスクのパーティショニング
 
 1. パーティショニングの方法から`Guided - use entire disk and set up encrypted LVM`を選択します。
-2. パーティショニング機構から`Separate /home, /var, and /tmp partitions`を選択します。
+2. パーティショニング機構から`Separate /home partition`を選択します。
 3. 確認メッセージが出るので`Yes`を選択します。
 4. 暗号化用のパスワードが要求されるので、設定します。課題のパスワード要件はここには適用されません。  
    ※このパスワードは`VM起動時`に求められるので、記憶する必要があります。
 5. ガイドによるパーティショニングを利用するボリュームのサイズを選択します。ここでは`15GB`を入力します。
-6. `Configure the Logical Volume Manager`を選択します。パーティション初期化の警告が出るので、`Yes`を選択します。
-7. LVM 設定画面に到達したら、まずは`srv`を作成します。
-   - `Create logical volume`を選択します。
-   - ボリュームグループを選択（選択肢が 1 つの場合はそのままで OK）
-   - `Logical volume name`を `srv` に設定
-   - ボリュームサイズを `4000MB` に設定
-8. 次に`var-log`を作成します。
-   - `Create logical volume`を選択します。
-   - ボリュームグループを選択（選択肢が 1 つの場合はそのままで OK）
-   - `Logical volume name`を `var-log` に設定
-   - ボリュームサイズを `1950MB` に設定
-9. `Finish`を選択してパーティションの設定画面へ戻ります。
-10. 続いてパーティション設定画面から LVM 内の`/srv #1 4.0GB`を選択し、設定を行います。
-    - パーティション設定の`Use as : do not use`を選択します。
-    - パーティションの利用方法から`Ext4 Journaling file system`を選択します。
-    - パーティションの利用方法が`Use as : Ext4 Journaling file system`に変更されていることを確認します。
-    - マウントポイントの編集を行います。
-    - `Mount point`を選択
-    - `/srv`に設定
-    - マウントポイントが`/srv`に変更されていることを確認します。
-      以上で`srv`の設定は終了です。`Done setting up the partition`を選択します。
-11. 次にパーティション設定画面から LVM 内の`/var/log用の論理ボリューム（2.0GB）`を選択し、設定を行います。
-    - 先ほどと同じようにジャーナリングファイルシステムを選択します。
-    - マウントポイントを選択する際、デフォルトで`/var/log`が存在しないので、`Enter manually`から手動で追加してください。
-    - ジャーナリングファイルシステムが`Ext4 Journaling file system`、マウントポイントが`/var/log`になっていることを確認します。
-    - 設定を終了します。
-12. `Finish partitioning and write changes to disk`を選択し、パーティショニングを終了します。
-13. パーティション設定の変更内容をディスクに書き込む確認が出るので、`Yes`を選択します。
+6. `Finish partitioning and write changes to disk`を選択し、パーティショニングを終了します。
+7. パーティション設定の変更内容をディスクに書き込む確認が出るので、`Yes`を選択します。
 
 ### その他の設定
 
