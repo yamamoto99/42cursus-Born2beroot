@@ -96,34 +96,34 @@
 7. 確認が出るので`Continue`を選択します。
 8. terminal で`vgrename <hostname>-vg LVMGroup`を実行します。  
    ※`<hostname>`は自身が設定した、マシンの hostname を入力してください。
-10. 次にswap領域の名前を変更します。terminalで`lvrename LVMGroup swap_1 swap`を実行します。
-9. terminalから`exit`して、menu から`Partition disks`に戻ります。
-10. `Configure the Logical Volume Manager`を選択します。
-11. `srv`を作成します。
+9. 次に swap 領域の名前を変更します。terminal で`lvrename LVMGroup swap_1 swap`を実行します。
+10. terminal から`exit`して、menu から`Partition disks`に戻ります。
+11. `Configure the Logical Volume Manager`を選択します。
+12. `srv`を作成します。
     - `Create logical volume`を選択します。
     - ボリュームグループを選択（選択肢が 1 つの場合はそのままで OK）
     - `Logical volume name`を `srv` に設定
     - ボリュームサイズを `4000MB` に設定
-12. 次に`var-log`を作成します。
+13. 次に`var-log`を作成します。
     - `Create logical volume`を選択します。
     - ボリュームグループを選択（選択肢が 1 つの場合はそのままで OK）
     - `Logical volume name`を `var-log` に設定
     - ボリュームサイズを `1950MB` に設定
-13. `Finish`を選択してパーティションの設定画面へ戻ります。
-14. 次にパーティション設定画面から LVM 内の`/var/log用の論理ボリューム（2.0GB）`を選択し、設定を行います。
+14. `Finish`を選択してパーティションの設定画面へ戻ります。
+15. 次にパーティション設定画面から LVM 内の`/var/log用の論理ボリューム（2.0GB）`を選択し、設定を行います。
     - パーティション設定の`Use as : do not use`を選択します。
     - パーティションの利用方法から`Ext4 Journaling file system`を選択します。
     - マウントポイントを選択する際、デフォルトで`/var/log`が存在しないので、`Enter manually`から手動で追加してください。
     - ジャーナリングファイルシステムが`Ext4 Journaling file system`、マウントポイントが`/var/log`になっていることを確認します。
     - 設定を終了します。
-15. 同じような設定を`home`,`root`,`tmp`にも適用します。
+16. 同じような設定を`home`,`root`,`tmp`にも適用します。
     ジャーナリングファイルシステムが`Ext4 Journaling file system`、マウントポイントはそれぞれ対応したパスを選択します。
-16. 次にパーティション設定画面から LVM 内の`swap用の論理ボリューム（1.0GB）`を選択し、設定を行います。
+17. 次にパーティション設定画面から LVM 内の`swap用の論理ボリューム（1.0GB）`を選択し、設定を行います。
     - パーティション設定の`Use as : do not use`を選択します。
     - パーティションの利用方法から`swap area`を選択します。
     - 設定を終了します。
-17. `Finish partitioning and write changes to disk`を選択し、パーティショニングを終了します。
-18. パーティション設定の変更内容をディスクに書き込む確認が出るので、`Yes`を選択します。
+18. `Finish partitioning and write changes to disk`を選択し、パーティショニングを終了します。
+19. パーティション設定の変更内容をディスクに書き込む確認が出るので、`Yes`を選択します。
 
 ### その他の設定
 
