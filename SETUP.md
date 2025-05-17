@@ -274,6 +274,9 @@ Defaults	iolog_dir=/var/log/sudo
 Defaults	passwd_tries=3
 ```
 
+> [!WARNING]
+> secure_pathの設定に関して、課題要件に沿うために、default状態からPATHを追加する必要があります。
+
 ## グループ
 
 課題要件ではユーザーを`user42`と`sudo`のグループに所属させる必要があります。  
@@ -374,6 +377,11 @@ crontab -e
 ```
 
 `monitoring.sh`のサンプルは[こちら](monitoring.sh)
+
+> [!WARNING]
+> 上記サンプルをそのまま利用する場合、`bc`コマンド、`mpstat`コマンドがデフォルトでインストールされていないため、別途インストールする必要があります。
+> `apt install bc`
+> `apt install sysstat`
 
 </br>
 </br>

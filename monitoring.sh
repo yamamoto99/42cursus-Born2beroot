@@ -6,7 +6,7 @@
 #    By: masayama <masayama@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/02 22:45:38 by masayama          #+#    #+#              #
-#    Updated: 2025/02/03 01:01:51 by masayama         ###   ########.fr        #
+#    Updated: 2025/05/17 22:20:44 by masayama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,9 +117,9 @@ IP_ADD=$(hostname -I)
 MAC_ADD=$(ip link show | grep link/ether | awk '{print $2}')
 
 # sudoコマンドの実行回数を取得
-# grep COMMAND /var/log/sudo/sudo.log: sudoログから"COMMAND"を含む行を抽出
+# grep -a COMMAND /var/log/sudo/sudo.log: sudoログから"COMMAND"を含む行を抽出（バイナリファイルもテキストとして処理）
 # wc -l: 行数をカウント（sudoコマンド実行回数）
-SUDO_LOG=$(grep COMMAND /var/log/sudo/sudo.log | wc -l)
+SUDO_LOG=$(grep -a COMMAND /var/log/sudo/sudo.log | wc -l)
 
 wall <<EOF
 #Architecture: $SYSTEM_ARCH
